@@ -1,9 +1,35 @@
-{% if latest_books_list %}
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if books.has_other_pages %}
+{% if books %}
+<h3>
     <ul>
-    {% for book in latest_books_list %}
-        <li><a href="{% url 'books:info' book.id %}">{{ book.title }}</a></li>
+    {% for book in books %}
+        <li><a href="{% url 'books:book_info' book.id %}">{{ book.title }}</a></li>
     {% endfor %}
     </ul>
-{% else %}
-    <p>No polls are available.</p>
+</h3>
+ <ul class="pagination">
+    {% if books.has_previous %}
+      <li><a class="page-item page-link" href="?page={{ books.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in books.paginator.page_range %}
+      {% if books.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if books.has_next %}
+      <li><a class="page-item page-link" href="?page={{ books.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+    {% endif %}
+  </ul>
 {% endif %}
+{% endif %}
+{% endblock %}

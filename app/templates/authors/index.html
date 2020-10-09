@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if authors %}
+    <ul>
+    <h3>
+    {% for author in authors %}
+        <li><a href="{% url 'books:author_info' author.id %}">{{ author.full_name }}</a></li>
+    {% endfor %}
+    </h3>
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock %}
