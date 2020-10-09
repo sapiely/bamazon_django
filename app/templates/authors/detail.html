@@ -1,0 +1,8 @@
+<h1>{{ author.full_name }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<p>Description: {{ author.description }}
+<p>Birth date: {{ author.birth_date }}
+{% if author.death_date %}
+    <p>Death date: {{ author.death_date }}
+{% endif %}
