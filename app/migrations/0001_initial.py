@@ -7,28 +7,43 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('full_name', models.CharField(max_length=60)),
-                ('description', models.TextField(max_length=500)),
-                ('birth_date', models.DateField()),
-                ('death_date', models.DateField(blank=True, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("full_name", models.CharField(max_length=60)),
+                ("description", models.TextField(max_length=500)),
+                ("birth_date", models.DateField()),
+                ("death_date", models.DateField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=32)),
-                ('description', models.TextField(max_length=360)),
-                ('release_date', models.DateField()),
-                ('author', models.ManyToManyField(to='app.Author')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=32)),
+                ("description", models.TextField(max_length=360)),
+                ("release_date", models.DateField()),
+                ("author", models.ManyToManyField(to="app.Author")),
             ],
         ),
     ]

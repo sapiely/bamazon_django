@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ author.full_name }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<table class="table">
+    <tbody>
+    <tr>
+        <td>
+            <h1>{{ author.full_name }}</h1>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h3>Description: {{ author.description }}</h3>
-<h3>Birth date: {{ author.birth_date }}</h3>
-{% if author.death_date %}
-    <h3>Death date: {{ author.death_date }}</h3>
-{% endif %}
+            <h3>Birth date: {{ author.birth_date }}</h3>
+            {% if author.death_date %}
+                <h3>Death date: {{ author.death_date }}</h3>
+            {% endif %}
+            <h3>Description: {{ author.description }}</h3>
 
-{% if books  %}
-    <h3>Books:
-    {% for book in books %}
-        <a href="{% url 'books:book_info' book.id %}">{{ book.title }}</a>;
-    {% endfor %}
-    </h3>
-{% endif %}
+            {% if books  %}
+                <h3>Books:
+                {% for book in books %}
+                    <a href="{% url 'books:book_info' book.id %}">{{ book.title }}</a>;
+                {% endfor %}
+                </h3>
+            {% endif %}
+        </td>
+        <td>
+            {% if author.photo %}
+            <img src="{{ author.photo.url }}">
+            {% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
 {% endblock %}
+
+

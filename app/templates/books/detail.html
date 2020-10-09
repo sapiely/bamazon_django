@@ -1,14 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Title: {{ book.title }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<table class="table">
+    <tbody>
+    <tr>
+        <td>
+            <h1>Title: {{ book.title }}</h1>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h3>Description: {{ book.description }}</h3>
-<h3>Author{% if authors.count > 1 %}s{% endif %}:
-    {% for author in authors %}
-        <a href="{% url 'books:author_info' author.id %}">{{ author.full_name }}</a>;
-    {% endfor %}
-</h3>
-<h3>Release date: {{ book.release_date }}</h3>
+            <h3>Description: {{ book.description }}</h3>
+            <h3>Author{% if authors.count > 1 %}s{% endif %}:
+                {% for author in authors %}
+                    <a href="{% url 'books:author_info' author.id %}">{{ author.full_name }}</a>;
+                {% endfor %}
+            </h3>
+            <h3>Release date: {{ book.release_date }}</h3>
+        </td>
+        <td>
+            {% if book.photo %}
+            <img src="{{ book.photo.url }}">
+            {% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
 {% endblock %}
